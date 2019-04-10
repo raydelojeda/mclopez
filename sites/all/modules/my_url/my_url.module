@@ -1,0 +1,26 @@
+<?php
+function my_url_menu()
+{
+$items['infraestructura'] = array(
+'title' => t('Blog'),
+'page callback' => 'pag',
+'access callback' => TRUE,
+'type' => MENU_CALLBACK,
+);
+return $items;
+}
+function pag()
+{
+	return '';
+}
+function alias_arg($index)
+{
+if(isset($_SERVER ['REDIRECT_URL']))
+{
+$pos=substr_count(base_path(),'/');
+$args=explode('/',$_SERVER ['REDIRECT_URL']);
+return(isset($args[$index+$pos]))?$args[$index+$pos]:'';
+}
+return '';
+}
+?>

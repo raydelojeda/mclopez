@@ -1,0 +1,25 @@
+<?php
+function tinynav_form_block_admin_configure_alter(&$form, $form_state) {
+  if ($form['module']['#value']=='superfish')
+  {
+  $delta=$form['delta']['#value'];
+  $form['settings']['sf-settings']['tinynav_'.$delta]=array('#title'=>t('To apply tinynav'),
+                         '#type'=>'checkbox',
+						 '#default_value'=>variable_get('tinynav_'.$delta,FALSE));
+   $form['#submit'][]='tinynav_submit'; 						 
+ }						 
+}
+function tinynav_submit($form,&$form_state)
+{
+  $delta=$form_state['values']['delta'];
+  variable_set('tinynav_'.$delta,$form_state['values']['tinynav_'.$delta]);
+}
+function tinynav_preprocess_superfish(&$variables)
+{
+$delta=$variables['id'];
+$id="superfish-$delta";
+drupal_add_js(drupal_get_path('module','tinynav').'/tinynav.js');
+drupal_add_js(drupal_get_path('module','tinynav').'/tinynav_drupal.js');
+$settings['tinynav']=variable_get("tinynav_$delta",0);
+drupal_add_js(array('tinynav' => array($id => $settings)), 'setting');
+}

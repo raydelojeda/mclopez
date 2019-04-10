@@ -1,0 +1,10 @@
+name = View Carousel
+description = Create jQuery-based carousel rotators.
+package = User interface
+core = 7.x
+dependencies[] = views
+
+
+files[] = view_carousel.views.inc
+files[] = view_carousel_style_plugin.inc
+

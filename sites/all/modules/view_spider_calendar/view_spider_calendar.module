@@ -1,0 +1,17 @@
+<?php
+function view_spider_calendar_view_api()
+{
+  return array('api' => 3);
+}
+
+function view_spider_calendar_views_data() {
+  $data['views']['spider_calendar_area'] = array(
+    'title' => t('Spider Calendar Area'),
+    'help' => t('Provide  markup with  spider_calendar format for the area.'),
+    'area' => array(
+      'handler' => 'view_handler_spider_calendar_area',
+    ),
+  );
+  return $data;
+}
+

@@ -1,0 +1,12 @@
+name = Atenas Integration
+description = Para integrar con la base de datos de Atenas.
+package = Pro Drupal Development
+core = 7.x
+
+dependencies[]=views
+
+files[] = atenas_integration.views.inc
+files[] = atenas_integration_views_handler_field_date.inc
+
+
+

@@ -1,0 +1,6 @@
+name = "Tinynav"
+description = "jQuery tinynav plugin for your Drupal menus."
+package = User interface
+dependencies[] =superfish
+
+core = 7.x

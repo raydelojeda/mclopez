@@ -1,0 +1,181 @@
+$view = new view;
+$view->name = 'birthday';
+$view->description = '';
+$view->tag = 'default';
+$view->base_table = 'persona';
+$view->human_name = 'birthday';
+$view->core = 7;
+$view->api_version = '3.0';
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+/* Display: Master */
+$handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['title'] = 'birthday';
+$handler->display->display_options['access']['type'] = 'none';
+$handler->display->display_options['cache']['type'] = 'none';
+$handler->display->display_options['query']['type'] = 'views_query';
+$handler->display->display_options['query']['options']['query_comment'] = FALSE;
+$handler->display->display_options['exposed_form']['type'] = 'basic';
+$handler->display->display_options['pager']['type'] = 'some';
+$handler->display->display_options['pager']['options']['items_per_page'] = '5';
+$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['row_plugin'] = 'fields';
+/* Field: Atenas: Primer nombre */
+$handler->display->display_options['fields']['primer_nombre']['id'] = 'primer_nombre';
+$handler->display->display_options['fields']['primer_nombre']['table'] = 'persona';
+$handler->display->display_options['fields']['primer_nombre']['field'] = 'primer_nombre';
+$handler->display->display_options['fields']['primer_nombre']['label'] = '';
+$handler->display->display_options['fields']['primer_nombre']['exclude'] = TRUE;
+$handler->display->display_options['fields']['primer_nombre']['alter']['alter_text'] = 0;
+$handler->display->display_options['fields']['primer_nombre']['alter']['make_link'] = 0;
+$handler->display->display_options['fields']['primer_nombre']['alter']['absolute'] = 0;
+$handler->display->display_options['fields']['primer_nombre']['alter']['external'] = 0;
+$handler->display->display_options['fields']['primer_nombre']['alter']['replace_spaces'] = 0;
+$handler->display->display_options['fields']['primer_nombre']['alter']['trim_whitespace'] = 0;
+$handler->display->display_options['fields']['primer_nombre']['alter']['nl2br'] = 0;
+$handler->display->display_options['fields']['primer_nombre']['alter']['word_boundary'] = 1;
+$handler->display->display_options['fields']['primer_nombre']['alter']['ellipsis'] = 1;
+$handler->display->display_options['fields']['primer_nombre']['alter']['strip_tags'] = 0;
+$handler->display->display_options['fields']['primer_nombre']['alter']['trim'] = 0;
+$handler->display->display_options['fields']['primer_nombre']['alter']['html'] = 0;
+$handler->display->display_options['fields']['primer_nombre']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['primer_nombre']['element_default_classes'] = 1;
+$handler->display->display_options['fields']['primer_nombre']['hide_empty'] = 0;
+$handler->display->display_options['fields']['primer_nombre']['empty_zero'] = 0;
+$handler->display->display_options['fields']['primer_nombre']['hide_alter_empty'] = 1;
+/* Field: Atenas: Segundo nombre */
+$handler->display->display_options['fields']['segundo_nombre']['id'] = 'segundo_nombre';
+$handler->display->display_options['fields']['segundo_nombre']['table'] = 'persona';
+$handler->display->display_options['fields']['segundo_nombre']['field'] = 'segundo_nombre';
+$handler->display->display_options['fields']['segundo_nombre']['label'] = '';
+$handler->display->display_options['fields']['segundo_nombre']['exclude'] = TRUE;
+$handler->display->display_options['fields']['segundo_nombre']['alter']['alter_text'] = 0;
+$handler->display->display_options['fields']['segundo_nombre']['alter']['make_link'] = 0;
+$handler->display->display_options['fields']['segundo_nombre']['alter']['absolute'] = 0;
+$handler->display->display_options['fields']['segundo_nombre']['alter']['external'] = 0;
+$handler->display->display_options['fields']['segundo_nombre']['alter']['replace_spaces'] = 0;
+$handler->display->display_options['fields']['segundo_nombre']['alter']['trim_whitespace'] = 0;
+$handler->display->display_options['fields']['segundo_nombre']['alter']['nl2br'] = 0;
+$handler->display->display_options['fields']['segundo_nombre']['alter']['word_boundary'] = 1;
+$handler->display->display_options['fields']['segundo_nombre']['alter']['ellipsis'] = 1;
+$handler->display->display_options['fields']['segundo_nombre']['alter']['strip_tags'] = 0;
+$handler->display->display_options['fields']['segundo_nombre']['alter']['trim'] = 0;
+$handler->display->display_options['fields']['segundo_nombre']['alter']['html'] = 0;
+$handler->display->display_options['fields']['segundo_nombre']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['segundo_nombre']['element_default_classes'] = 1;
+$handler->display->display_options['fields']['segundo_nombre']['hide_empty'] = 0;
+$handler->display->display_options['fields']['segundo_nombre']['empty_zero'] = 0;
+$handler->display->display_options['fields']['segundo_nombre']['hide_alter_empty'] = 1;
+/* Field: Atenas: Primer apellido */
+$handler->display->display_options['fields']['primer_apellido']['id'] = 'primer_apellido';
+$handler->display->display_options['fields']['primer_apellido']['table'] = 'persona';
+$handler->display->display_options['fields']['primer_apellido']['field'] = 'primer_apellido';
+$handler->display->display_options['fields']['primer_apellido']['label'] = '';
+$handler->display->display_options['fields']['primer_apellido']['exclude'] = TRUE;
+$handler->display->display_options['fields']['primer_apellido']['alter']['alter_text'] = 0;
+$handler->display->display_options['fields']['primer_apellido']['alter']['make_link'] = 0;
+$handler->display->display_options['fields']['primer_apellido']['alter']['absolute'] = 0;
+$handler->display->display_options['fields']['primer_apellido']['alter']['external'] = 0;
+$handler->display->display_options['fields']['primer_apellido']['alter']['replace_spaces'] = 0;
+$handler->display->display_options['fields']['primer_apellido']['alter']['trim_whitespace'] = 0;
+$handler->display->display_options['fields']['primer_apellido']['alter']['nl2br'] = 0;
+$handler->display->display_options['fields']['primer_apellido']['alter']['word_boundary'] = 1;
+$handler->display->display_options['fields']['primer_apellido']['alter']['ellipsis'] = 1;
+$handler->display->display_options['fields']['primer_apellido']['alter']['strip_tags'] = 0;
+$handler->display->display_options['fields']['primer_apellido']['alter']['trim'] = 0;
+$handler->display->display_options['fields']['primer_apellido']['alter']['html'] = 0;
+$handler->display->display_options['fields']['primer_apellido']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['primer_apellido']['element_default_classes'] = 1;
+$handler->display->display_options['fields']['primer_apellido']['hide_empty'] = 0;
+$handler->display->display_options['fields']['primer_apellido']['empty_zero'] = 0;
+$handler->display->display_options['fields']['primer_apellido']['hide_alter_empty'] = 1;
+/* Field: Atenas: Segundo apellido */
+$handler->display->display_options['fields']['segundo_apellido']['id'] = 'segundo_apellido';
+$handler->display->display_options['fields']['segundo_apellido']['table'] = 'persona';
+$handler->display->display_options['fields']['segundo_apellido']['field'] = 'segundo_apellido';
+$handler->display->display_options['fields']['segundo_apellido']['label'] = '';
+$handler->display->display_options['fields']['segundo_apellido']['alter']['alter_text'] = 1;
+$handler->display->display_options['fields']['segundo_apellido']['alter']['text'] = '[primer_nombre] [segundo_nombre] [primer_apellido] [segundo_apellido]';
+$handler->display->display_options['fields']['segundo_apellido']['alter']['make_link'] = 0;
+$handler->display->display_options['fields']['segundo_apellido']['alter']['absolute'] = 0;
+$handler->display->display_options['fields']['segundo_apellido']['alter']['external'] = 0;
+$handler->display->display_options['fields']['segundo_apellido']['alter']['replace_spaces'] = 0;
+$handler->display->display_options['fields']['segundo_apellido']['alter']['trim_whitespace'] = 0;
+$handler->display->display_options['fields']['segundo_apellido']['alter']['nl2br'] = 0;
+$handler->display->display_options['fields']['segundo_apellido']['alter']['word_boundary'] = 1;
+$handler->display->display_options['fields']['segundo_apellido']['alter']['ellipsis'] = 1;
+$handler->display->display_options['fields']['segundo_apellido']['alter']['strip_tags'] = 0;
+$handler->display->display_options['fields']['segundo_apellido']['alter']['trim'] = 0;
+$handler->display->display_options['fields']['segundo_apellido']['alter']['html'] = 0;
+$handler->display->display_options['fields']['segundo_apellido']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['segundo_apellido']['element_default_classes'] = 1;
+$handler->display->display_options['fields']['segundo_apellido']['hide_empty'] = 0;
+$handler->display->display_options['fields']['segundo_apellido']['empty_zero'] = 0;
+$handler->display->display_options['fields']['segundo_apellido']['hide_alter_empty'] = 1;
+/* Field: Atenas: Foto */
+$handler->display->display_options['fields']['foto']['id'] = 'foto';
+$handler->display->display_options['fields']['foto']['table'] = 'persona';
+$handler->display->display_options['fields']['foto']['field'] = 'foto';
+$handler->display->display_options['fields']['foto']['label'] = '';
+$handler->display->display_options['fields']['foto']['alter']['alter_text'] = 1;
+$handler->display->display_options['fields']['foto']['alter']['text'] = '<img src="data:[foto]" />';
+$handler->display->display_options['fields']['foto']['alter']['make_link'] = 0;
+$handler->display->display_options['fields']['foto']['alter']['absolute'] = 0;
+$handler->display->display_options['fields']['foto']['alter']['external'] = 0;
+$handler->display->display_options['fields']['foto']['alter']['replace_spaces'] = 0;
+$handler->display->display_options['fields']['foto']['alter']['trim_whitespace'] = 0;
+$handler->display->display_options['fields']['foto']['alter']['nl2br'] = 0;
+$handler->display->display_options['fields']['foto']['alter']['word_boundary'] = 1;
+$handler->display->display_options['fields']['foto']['alter']['ellipsis'] = 1;
+$handler->display->display_options['fields']['foto']['alter']['strip_tags'] = 0;
+$handler->display->display_options['fields']['foto']['alter']['trim'] = 0;
+$handler->display->display_options['fields']['foto']['alter']['html'] = 0;
+$handler->display->display_options['fields']['foto']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['foto']['element_default_classes'] = 1;
+$handler->display->display_options['fields']['foto']['hide_empty'] = 0;
+$handler->display->display_options['fields']['foto']['empty_zero'] = 0;
+$handler->display->display_options['fields']['foto']['hide_alter_empty'] = 1;
+/* Field: Atenas: Fecha de nacimiento */
+$handler->display->display_options['fields']['fecha_nacimiento']['id'] = 'fecha_nacimiento';
+$handler->display->display_options['fields']['fecha_nacimiento']['table'] = 'persona';
+$handler->display->display_options['fields']['fecha_nacimiento']['field'] = 'fecha_nacimiento';
+$handler->display->display_options['fields']['fecha_nacimiento']['label'] = 'Fecha de nacimiento:';
+$handler->display->display_options['fields']['fecha_nacimiento']['alter']['alter_text'] = 0;
+$handler->display->display_options['fields']['fecha_nacimiento']['alter']['make_link'] = 0;
+$handler->display->display_options['fields']['fecha_nacimiento']['alter']['absolute'] = 0;
+$handler->display->display_options['fields']['fecha_nacimiento']['alter']['external'] = 0;
+$handler->display->display_options['fields']['fecha_nacimiento']['alter']['replace_spaces'] = 0;
+$handler->display->display_options['fields']['fecha_nacimiento']['alter']['trim_whitespace'] = 0;
+$handler->display->display_options['fields']['fecha_nacimiento']['alter']['nl2br'] = 0;
+$handler->display->display_options['fields']['fecha_nacimiento']['alter']['word_boundary'] = 1;
+$handler->display->display_options['fields']['fecha_nacimiento']['alter']['ellipsis'] = 1;
+$handler->display->display_options['fields']['fecha_nacimiento']['alter']['strip_tags'] = 0;
+$handler->display->display_options['fields']['fecha_nacimiento']['alter']['trim'] = 0;
+$handler->display->display_options['fields']['fecha_nacimiento']['alter']['html'] = 0;
+$handler->display->display_options['fields']['fecha_nacimiento']['element_type'] = '0';
+$handler->display->display_options['fields']['fecha_nacimiento']['element_label_type'] = 'strong';
+$handler->display->display_options['fields']['fecha_nacimiento']['element_label_colon'] = 0;
+$handler->display->display_options['fields']['fecha_nacimiento']['element_wrapper_type'] = 'div';
+$handler->display->display_options['fields']['fecha_nacimiento']['element_default_classes'] = 0;
+$handler->display->display_options['fields']['fecha_nacimiento']['hide_empty'] = 0;
+$handler->display->display_options['fields']['fecha_nacimiento']['empty_zero'] = 0;
+$handler->display->display_options['fields']['fecha_nacimiento']['hide_alter_empty'] = 1;
+$handler->display->display_options['fields']['fecha_nacimiento']['date_format'] = 'custom';
+$handler->display->display_options['fields']['fecha_nacimiento']['custom_date_format'] = 'd/m/Y';
+
+/* Display: Block */
+$handler = $view->new_display('block', 'Block', 'block');
+$translatables['birthday'] = array(
+  t('Master'),
+  t('birthday'),
+  t('more'),
+  t('Apply'),
+  t('Reset'),
+  t('Sort by'),
+  t('Asc'),
+  t('Desc'),
+  t('[primer_nombre] [segundo_nombre] [primer_apellido] [segundo_apellido]'),
+  t('<img src="data:[foto]" />'),
+  t('Fecha de nacimiento:'),
+  t('Block'),
+);

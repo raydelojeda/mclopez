@@ -1,0 +1,8 @@
+name = Views Event Calendar
+description = Allow to attach one event calendar into one view.
+package = Views
+core = 7.x
+dependencies[]= views
+dependencies[]= spider_calendar
+
+files[]=view_handler_spider_calendar_area.inc

@@ -1,0 +1,72 @@
+<?php
+/**
+ * @file
+ * Provide an accordion display style for Views.
+ *
+ * This is a placeholder file so drupal will enable the module. All logic is contained in
+ * other files located with the module.
+ */
+
+
+/**
+ * Implementation of hook_views_api().
+ */
+function views_tag_format_views_api() {
+  return array('api' => 2);
+}
+
+/**
+ * Template function for views_accordion style plugin
+ *
+ * @param array $vars
+ *  Array of template variables.
+ *
+ * The JS file is loaded within render() in views_accordion_style_plugin.inc
+ */
+function template_preprocess_views_view_tag_format(&$vars) {
+  // inherit the normal unformatted classes
+  template_preprocess_views_view_unformatted($vars);
+
+  $vars['tag'] = $vars['options']['tag'];
+  $vars['row_count']=$vars['options']['row_count'];
+  $vars['group_class']=$vars['options']['group_class'];
+  $grouping=$vars['options']['grouping'];
+  $last_group=end($grouping) ;
+  $vars['title_class']=$last_group['grouping_class'];
+}
+
+/**
+ * Only returns true the first time it's called for an id
+ *
+ * @param $id
+ *  A uniqe view id.
+ *
+ * @return bool
+ *  TRUE for the first time called for a given $id
+ *  FALSE for each time after that
+ */
+function theme_views_tag_format_display_item($id) {
+  static $display = array();
+
+  if (!isset($display[$id])) $display[$id] = FALSE;
+
+  $output = $display[$id];
+
+  if ($display[$id] == FALSE) $display[$id] = TRUE;
+
+  return $output;
+}
+function row_count_validate($element,&$form_state)
+{
+ if(!preg_match('/^0|([1-9][0-9]*)$/',$form_state['values']['style_options']['group_row']['row_count']))
+ {
+  form_error($element, t('You must enter one natural number of field Row Count.'));
+ }
+ else
+ {
+ $form_state['values']['style_options']+=array('row_count'=>$form_state['values']['style_options']['group_row']['row_count'],
+                                              'group_class'=>$form_state['values']['style_options']['group_row']['group_class']);
+unset($form_state['values']['style_options']['group_row']);											  
+ }
+ 
+}

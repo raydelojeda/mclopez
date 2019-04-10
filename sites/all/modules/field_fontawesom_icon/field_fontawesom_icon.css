@@ -1,0 +1,65 @@
+.list-icon
+{
+max-width:300px;
+max-height:150px;
+overflow:auto;
+border:solid #CCCCCC;
+background-color:#B5DEFD;
+position:absolute;
+z-index:100;
+}
+.list-icon > div
+{
+display:inline-block;
+width:23%;
+margin:5px 0;
+text-align:center;
+font-size:30px;
+}
+.list-icon > div:first-child
+{
+margin-left:3px;
+}
+.list-icon >div.selected ,.list-icon>div:hover 
+{
+background-color:#00CC99;
+opacity:0.7;
+cursor:pointer;
+}
+input.field-fontawesom-icon.form-text
+{
+ display:none; 
+}
+div.field-fontawesom
+{
+border:solid 1px;
+background-repeat:no-repeat;
+margin-bottom:5px;
+cursor:pointer;
+width:30px;
+height:30px;
+text-align:center; 
+font-size:25px;
+padding-top:6px;
+}
+.fontawesom-item
+{
+float:left;
+margin:8px;
+}
+.fontawesom-item:nth-child(3)
+{
+margin-right:12px;
+margin-top:15px;
+}
+.fontawesom-item:nth-child(3) .form-item
+{
+padding:0;
+margin:0;
+} 
+
+/*.field-widget-fontawesom-icon
+{
+border:solid 1px;
+width:350px; 
+}*/

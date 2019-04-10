@@ -1,0 +1,49 @@
+<?php
+
+function nice_fr_form_newsletter_subscribe_form_alter(&$form, &$form_state)
+{
+global $user;
+ if (!isset($user->mail) || variable_get('newsletter_show_email_in_block', FALSE)) {
+     $x['firstname'] = array(
+            '#type' => 'textfield',
+            '#required' => TRUE,
+			'#attributes'=>array('placeholder'=>'Your Name'),
+			'#prefix'=>'<p>Subscribe to our email newsletter for useful tips and valuable resources.</p>
+			            <div class="input-prepend">
+			            <span class="add-on"><i class="icon-align-justify"></i></span>',
+            '#suffix'=>'</div>' 			
+            );
+	$form=array_merge($x,$form);		
+    $form['email'] = array(
+      '#type' => 'textfield',
+      '#attributes'=>array('placeholder'=>'Your Email','class'=>array('email')),
+      '#required' => TRUE,
+	  '#prefix'=>'<div class="input-prepend">
+			           <span class="add-on"><i class="icon-align-justify"></i></span>',
+      '#suffix'=>'</div>' 
+    );
+  }
+   $form['newsletter-submit']['#value']=t('Send');
+   $form['newsletter-submit']['#attributes']['class']=array('button');
+   
+  
+ 
+}
+function nice_fr_form_search_block_form_alter(&$form, &$form_state)
+{
+ $form['#prefix']='<div class="blog-last">';
+ $form['#suffix']='<div class="separador"></div></div>';
+ $form['actions']['submit']['#attributes']['class']=array('button');
+}
+function nice_fr_form_user_login_block_alter(&$form, &$form_state)
+{
+ $form['name']['#attributes']['placeholder']=t('Username');
+ $form['pass']['#attributes']['placeholder']=t('Password');
+ $form['actions']['submit']['#value']=t('sign in');
+ $form['actions']['submit']['#attributes']['class']=array('botton');
+ unset($form['name']['#title']);
+ unset($form['pass']['#title']);
+ unset( $form['links']);
+}
+
+?>

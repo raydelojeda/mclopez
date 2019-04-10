@@ -1,0 +1,21 @@
+name=Chester
+description= One theme for the system solutions
+core=7.x
+stylesheets[screen][] = css/style.css
+
+scripts[]=js/theme-options/jquery.cookies.js
+scripts[]=js/totop/jquery.ui.totop.js
+scripts[]=js/bootstrap/bootstrap.js
+scripts[]=js/jquery-func.js
+
+regions[header]=Header
+regions[nav]=Nav
+regions[slider]=Slider
+regions[sponsor]=Sponsor
+regions[contact]=Contact
+regions[help]=Help
+regions[content]=Content
+regions[main-content]=Main Content
+regions[footer-top]=Footer-top
+regions[footer-medium]=Footer-medium
+regions[footer-down]=Footer-down

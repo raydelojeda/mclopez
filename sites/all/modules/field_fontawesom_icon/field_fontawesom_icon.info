@@ -1,0 +1,5 @@
+name= Field Fontawesom Icon
+description=Field Fontawesom Icon used by select yor own icon. allow config the icon.
+package = Fields
+core = 7.x
+dependencies[] = libraries

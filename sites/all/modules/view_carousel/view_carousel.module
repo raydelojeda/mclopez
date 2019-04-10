@@ -1,0 +1,34 @@
+<?php
+
+function template_preprocess_views_view_carousel(&$vars) {
+  // inherit the normal unformatted classes
+  template_preprocess_views_view_unformatted($vars);
+  $vars['ul_class']=$vars['options']['class'];
+  // The template variable 'view_accordion_id' MUST be the same as $accordion_id in the render() function inside the style plugin
+  $vars['carousel_id'] = 'carousel-'. $vars['view']->name ; // Don't touch it or it will stop working
+
+  // Add the css for fixing/preventing accordion issues
+  drupal_add_css(drupal_get_path('module', 'views_carousel') .'/carousel.css');
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function view_carousel_views_api() {
+  return array(
+    'api' => 2.0,
+     );
+}
+
+function theme_views_carousel_display_item($id) {
+  static $display = array();
+
+  if (!isset($display[$id])) $display[$id] = FALSE;
+
+  $output = $display[$id];
+
+  if ($display[$id] == FALSE) $display[$id] = TRUE;
+
+  return $output;
+}
+

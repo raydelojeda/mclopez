@@ -1,0 +1,412 @@
+<?php
+
+function  field_fontawesom_icon_field_info()
+{
+return array(
+'fontawesom_icon' => array(
+'label' => t('Fontawesom Icon'),
+'description' => t('Demonstrates a icon.'),
+'default_widget' => 'fontawesom_icon',
+'default_formatter' => 'fontawesom_icon',
+),
+);
+}
+
+function field_fontawesom_icon_field_is_empty($item, $field) {
+return empty($item['fontawesom_icon']);
+}
+
+function field_fontawesom_icon_field_formatter_info() {
+return array(
+'fontawesom_icon' => array(
+'label' => t('Fontawesom Icon formatter'),
+'field types' => array('fontawesom_icon'),
+'default_widget' => 'fontawesom_icon',
+'default_formatter' => 'fontawesom_icon',
+),
+);
+}
+function field_fontawesom_icon_field_schema($field) {
+$columns = array(
+'fontawesom_icon' => array('type' => 'varchar', 'length' => 100, 'not null' => FALSE),
+'color'=>array('type'=>'varchar','length'=>7,'default'=>'#ffffff','not null'=>FALSE),
+'size'=>array('type'=>'int','size'=>'normal','not null'=>FALSE),
+);
+$indexes = array(
+'fontawesom_icon' => array('fontawesom_icon'),
+);
+return array(
+'columns' => $columns,
+'indexes' => $indexes,
+);
+}
+
+function field_fontawesom_icon_field_formatter_view($entity_type, $entity, $field,$instance, $langcode, $items, $display){
+//print_r($items);
+$element = array();
+
+foreach ($items as $delta => $item)
+{
+$font_icon=$item['fontawesom_icon'];
+$color=$item['color'];
+$size=$item['size'];
+$element[$delta]['#markup'] ='<div><i class="icon-'.$font_icon.'" style="color:'.$color.';font-size:'.$size.'px;"></i></div>';
+}
+return $element;
+}
+
+function field_fontawesom_icon_field_widget_info() {
+return array(
+'fontawesom_icon' => array(
+'label' => t("Fontawesom Icon"),
+'field types' => array('fontawesom_icon'),
+),
+);
+}
+function field_fontawesom_icon_field_widget_form(&$form, &$form_state, $field, $instance,$langcode, $items, $delta, $element){
+ $default_value['fontawesom'] = isset($instance['default_value'][0]['fontawesom_icon']) ? $instance['default_value'][0]['fontawesom_icon'] : '';
+ $default_value['color'] = isset($instance['default_value'][0]['color']) ? $instance['default_value'][0]['color'] : '#000000';
+ $default_value['size'] = isset($instance['default_value'][0]['size']) ? $instance['default_value'][0]['size'] :40;
+$fontawesom = isset($items[$delta]['fontawesom_icon']) ? $items[$delta]['fontawesom_icon'] : $default_value['fontawesom'];
+$color=isset($items[$delta]['color']) ? $items[$delta]['color'] : $default_value['color'];
+$size=isset($items[$delta]['size']) ? $items[$delta]['size'] : $default_value['size'];
+ $field_id ='edit-'.$field['field_name'] . '-' . $langcode . '-' . $delta.'-'.$instance['widget']['type'];
+ $field_id=str_replace('_','-',$field_id);
+$element += array(
+'#delta' => $delta,
+);
+
+$element['fontawesom_icon'] = array('#type'=>'textfield',
+                         '#default_value'=>$fontawesom,
+						 '#attributes'=>array('class'=>array('field-fontawesom-icon',$fontawesom)),
+						 '#prefix'=>'<fieldset class="form-wrapper"><legend ><span class="fieldset-legend">'.$element['#title'].'</span></legend> <div class="clearfix"></div>
+						             <div class="fontawesom-item">',
+						 '#suffix'=>load_view_icons($field_id).'</div>',
+						 '#attached'=>array('js'=>array(drupal_get_path('module', 'field_fontawesom_icon') .'/field_fontawesom_icon.js'),
+						                    'css'=>array(drupal_get_path('module', 'field_fontawesom_icon') .'/field_fontawesom_icon.css'),
+											),
+                          '#title'=>t('Icon'),												
+						 );
+drupal_add_library('field_fontawesom_icon', 'bgrins-spectrum');
+  $element['color']= array('#type'=>'textfield',
+                         '#description' => t('Format #FFFFFF'), 
+                         '#default_value'=>$color,
+						 '#attributes'=>array('class'=>array('field_color_spectrum')),
+						 '#attached'=>array( 'library' => array(array('field_fontawesom_icon', 'spectrum')),
+						                     'js'=>array( drupal_get_path('module', 'field_fontawesom_icon') . '/field_fontawesom_icon_spectrum_color_picker/field_fontawesom_icon_spectrum_color_picker.jquery.js'),
+						                    ),
+						 '#title'=>t('Color'),	 
+						 '#prefix'=>'<div class="fontawesom-item">',
+						 '#suffix'=>'</div>',
+						 );
+$element['size']= array('#type'=>'textfield',
+                         '#default_value'=>$size,
+						 '#required'=>TRUE,
+						 '#maxlength'=>2,
+						 '#title'=>t('Size'),
+						 '#prefix'=>'<div class="fontawesom-item">',
+						 '#suffix'=>'</div><div class="clearfix"></div></fieldset',
+						 '#size'=>4,
+						 '#field_suffix'=>'px',
+						 );	 
+										 
+return $element;						 
+
+}
+
+function field_fontawesom_icon_library() {
+  
+  $path = libraries_get_path('bgrins-spectrum');
+  $libraries['bgrins-spectrum'] = array(
+    'title' => 'field_fontawesom_icon_spectrum_color_picker',
+    'website' => 'http://bgrins.github.io/spectrum/',
+    'version' => '1.1.0',
+    'js' => array(
+      $path . '/spectrum.js' => array(),
+    ),
+    'css' => array(
+      $path . '/spectrum.css' => array(),
+    ),
+  );
+  
+  return $libraries;
+}
+function field_fontawesom_icon_init()
+{
+//echo(file_exists(drupal_get_path('module', 'field_fontawesom_icon') . '/icons/font-awesome.min.css'))?'Yes':'No';
+
+ drupal_add_css(drupal_get_path('module', 'field_fontawesom_icon') . '/icons/font-awesome.min.css',array('group' => CSS_THEME,'media'=>'screen','every_page'=>TRUE,'weight'=>10));
+}
+
+function load_view_icons($field_id)
+{
+ $icons=array(
+      'adjust' => 'adjust',
+      'anchor' => 'anchor',
+      'archive' => 'archive',
+      'asterisk' => 'asterisk',
+      'barcode' => 'barcode',
+      'beer' => 'beer',
+      'bell' => 'bell',
+      'bolt' => 'bolt',
+      'book' => 'book',
+      'bookmark' => 'bookmark',
+      'briefcase' => 'briefcase',
+      'bug' => 'bug',
+      'bullhorn' => 'bullhorn',
+      'bullseye' => 'bullseye',
+      'calendar' => 'calendar',
+      'camera' => 'camera',
+      'camera-retro' => 'camera-retro',
+      'certificate' => 'certificate',
+      'circle' => 'circle',
+      'cloud' => 'cloud',
+      'cloud-download' => 'cloud-download',
+      'cloud-upload' => 'cloud-upload',
+      'code' => 'code',
+      'code-fork' => 'code-fork',
+      'coffee' => 'coffee',
+      'cog' => 'cog',
+      'cogs' => 'cogs',
+      'comment' => 'comment',
+      'comments' => 'comments',
+      'compass' => 'compass',
+      'credit-card' => 'credit-card',
+      'crop' => 'crop',
+      'dashboard' => 'dashboard',
+      'desktop' => 'desktop',
+      'download' => 'download',
+      'edit' => 'edit',
+      'envelope' => 'envelope',
+      'eraser' => 'eraser',
+      'exchange' => 'exchange',
+      'exclamation' => 'exclamation',
+      'external-link' => 'external-link',
+      'female' => 'female',
+      'fighter-jet' => 'fighter-jet',
+      'film' => 'film',
+      'filter' => 'filter',
+      'fire' => 'fire',
+      'fire-extinguisher' => 'fire-extinguisher',
+      'flag' => 'flag',
+      'flag-checkered' => 'flag-checkered',
+      'folder-open' => 'folder-open',
+      'gamepad' => 'gamepad',
+      'gear' => 'gear',
+      'gears' => 'gears',
+      'gift' => 'gift',
+      'glass' => 'glass',
+      'globe' => 'globe',
+      'group' => 'group',
+      'headphones' => 'headphones',
+      'heart' => 'heart',
+      'home' => 'home',
+      'inbox' => 'inbox',
+      'info' => 'info',
+      'key' => 'key',
+      'laptop' => 'laptop',
+      'leaf' => 'leaf',
+      'legal' => 'legal',
+      'lemon-o' => 'lemon-o',
+      'level-down' => 'level-down',
+      'level-up' => 'level-up',
+      'location-arrow' => 'location-arrow',
+      'lock' => 'lock',
+      'magic' => 'magic',
+      'magnet' => 'magnet',
+      'mail-forward' => 'mail-forward',
+      'mail-reply' => 'mail-reply',
+      'mail-reply-all' => 'mail-reply-all',
+      'male' => 'male',
+      'map-marker' => 'map-marker',
+      'microphone' => 'microphone',
+      'minus' => 'minus',
+      'mobile-phone' => 'mobile-phone',
+      'money' => 'money',
+      'music' => 'music',
+      'pencil' => 'pencil',
+      'phone' => 'phone',
+      'plane' => 'plane',
+      'plus' => 'plus',
+      'power-off' => 'power-off',
+      'print' => 'print',
+      'puzzle-piece' => 'puzzle-piece',
+      'qrcode' => 'qrcode',
+      'question' => 'question',
+      'quote-left' => 'quote-left',
+      'quote-right' => 'quote-right',
+      'random' => 'random',
+      'refresh' => 'refresh',
+      'reply' => 'reply',
+      'reply-all' => 'reply-all',
+      'retweet' => 'retweet',
+      'road' => 'road',
+      'rocket' => 'rocket',
+      'rss' => 'rss',
+      'search' => 'search',
+      'share' => 'share',
+      'shield' => 'shield',
+      'shopping-cart' => 'shopping-cart',
+      'signal' => 'signal',
+      'sitemap' => 'sitemap',
+      'sort' => 'sort',
+      'sort-down' => 'sort-down',
+      'sort-up' => 'sort-up',
+      'spinner' => 'spinner',
+      'star' => 'star',
+      'star-half' => 'star-half',
+      'star-half-empty' => 'star-half-empty',
+      'star-half-full' => 'star-half-full',
+      'subscript' => 'subscript',
+      'suitcase' => 'suitcase',
+      'superscript' => 'superscript',
+      'tablet' => 'tablet',
+      'tag' => 'tag',
+      'tags' => 'tags',
+      'tasks' => 'tasks',
+      'terminal' => 'terminal',
+      'thumbs-down' => 'thumbs-down',
+      'thumbs-up' => 'thumbs-up',
+      'ticket' => 'ticket',
+      'time' => 'time',
+      'tint' => 'tint',
+      'trophy' => 'trophy',
+      'truck' => 'truck',
+      'umbrella' => 'umbrella',
+      'unlock' => 'unlock',
+      'unlock-alt' => 'unlock-alt',
+      'upload' => 'upload',
+      'user' => 'user',
+      'volume-down' => 'volume-down',
+      'volume-off' => 'volume-off',
+      'volume-up' => 'volume-up',
+       'wrench' => 'wrench',
+       'bitcoin' => 'bitcoin',
+      'btc' => 'btc',
+      'cny' => 'cny',
+      'dollar' => 'dollar',
+      'eur' => 'eur',
+      'euro' => 'euro',
+      'gbp' => 'gbp',
+      'inr' => 'inr',
+      'jpy' => 'jpy',
+      'krw' => 'krw',
+      'money' => 'money',
+      'rupee' => 'rupee',
+      'usd' => 'usd',
+      'won' => 'won',
+      'yen' => 'yen',
+      'align-center' => 'align-center',
+      'align-justify' => 'align-justify',
+      'align-left' => 'align-left',
+      'align-right' => 'align-right',
+      'bold' => 'bold',
+      'columns' => 'columns',
+      'copy' => 'copy',
+      'cut' => 'cut',
+      'eraser' => 'eraser',
+      'file' => 'file',
+      'file-text' => 'file-text',
+      'font' => 'font',
+       'italic' => 'italic',
+      'link' => 'link',
+      'list' => 'list',
+      'list-alt' => 'list-alt',
+      'list-ol' => 'list-ol',
+      'list-ul' => 'list-ul',
+      'paperclip' => 'paperclip',
+      'paste' => 'paste',
+      'repeat' => 'repeat',
+      'rotate-left' => 'rotate-left',
+      'rotate-right' => 'rotate-right',
+      'save' => 'save',
+      'strikethrough' => 'strikethrough',
+      'table' => 'table',
+      'text-height' => 'text-height',
+      'text-width' => 'text-width',
+      'th' => 'th',
+      'th-large' => 'th-large',
+      'th-list' => 'th-list',
+      'underline' => 'underline',
+      'undo' => 'undo',
+      'unlink' => 'unlink',
+      'angle-down' => 'angle-down',
+      'angle-left' => 'angle-left',
+      'angle-right' => 'angle-right',
+      'angle-up' => 'angle-up',
+      'arrow-down' => 'arrow-down',
+      'arrow-left' => 'arrow-left',
+      'arrow-right' => 'arrow-right',
+      'arrow-up' => 'arrow-up',
+      'caret-down' => 'caret-down',
+      'caret-left' => 'caret-left',
+      'caret-right' => 'caret-right',
+      'caret-up' => 'caret-up',
+      'chevron-down' => 'chevron-down',
+      'chevron-left' => 'chevron-left',
+      'chevron-right' => 'chevron-right',
+      'chevron-up' => 'chevron-up',
+      'long-arrow-down' => 'long-arrow-down',
+      'long-arrow-left' => 'long-arrow-left',
+      'long-arrow-right' => 'long-arrow-right',
+      'long-arrow-up' => 'long-arrow-up',
+      'backward' => 'backward',
+      'eject' => 'eject',
+      'expand' => 'expand',
+      'fast-backward' => 'fast-backward',
+      'fast-forward' => 'fast-forward',
+      'forward' => 'forward',
+      'pause' => 'pause',
+      'play' => 'play',
+      'play-circle' => 'play-circle',
+      'play-circle-o' => 'play-circle-o',
+      'step-backward' => 'step-backward',
+      'step-forward' => 'step-forward',
+      'stop' => 'stop',
+      'youtube-play' => 'youtube-play',
+      'adn' => 'adn',
+      'android' => 'android',
+      'apple' => 'apple',
+      'bitbucket' => 'bitbucket',
+      'bitcoin' => 'bitcoin',
+      'btc' => 'btc',
+      'css3' => 'css3',
+      'dribbble' => 'dribbble',
+      'dropbox' => 'dropbox',
+      'facebook' => 'facebook',
+      'flickr' => 'flickr',
+      'foursquare' => 'foursquare',
+      'github' => 'github',
+      'github-alt' => 'github-alt',
+      'gittip' => 'gittip',
+      'google-plus' => 'google-plus',
+      'html5' => 'html5',
+      'instagram' => 'instagram',
+      'linkedin' => 'linkedin',
+      'linux' => 'linux',
+      'maxcdn' => 'maxcdn',
+      'pinterest' => 'pinterest',
+      'renren' => 'renren',
+      'skype' => 'skype',
+      'trello' => 'trello',
+      'tumblr' => 'tumblr',
+      'twitter' => 'twitter',
+      'vk' => 'vk',
+      'weibo' => 'weibo',
+      'windows' => 'windows',
+      'xing' => 'xing',
+      'youtube' => 'youtube',
+      'youtube-play' => 'youtube-play',
+      'ambulance' => 'ambulance',
+      'medkit' => 'medkit',
+      'stethoscope' => 'stethoscope',
+      'user-md' => 'user-md',
+      );
+ ob_start();
+ include(drupal_get_path('module','field_fontawesom_icon').'/list_icons.php');
+ $images=ob_get_contents();
+ ob_end_clean();
+ return $images;
+}
+
+

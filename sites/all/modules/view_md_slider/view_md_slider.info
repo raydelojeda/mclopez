@@ -1,0 +1,8 @@
+name = Views Md Slider
+description = Allow to attach one md_slider into one view.
+package = Views
+core = 7.x
+dependencies[]= views
+dependencies[]= md_slider
+
+files[]=view_handler_md_slider_area.inc

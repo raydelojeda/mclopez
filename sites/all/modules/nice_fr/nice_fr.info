@@ -1,0 +1,5 @@
+name=My Comment Block Form
+description= My own block from for to send comments
+package=Pro Drupal Development
+core=7.x
+version=VERSION

@@ -1,0 +1,59 @@
+<?php
+
+function atenas_integration_form_alter(&$form, &$form_state, $form_id) {
+// In this simple example we authenticate on username to see whether starts with dave
+if ($form_id == 'user_login' || $form_id == 'user_login_block') {
+array_unshift( $form['#validate'], 'atenas_integration_user_form_validate');
+}
+}
+function atenas_integration_user_form_validate(&$form, &$form_state) {
+try {
+$username = $form_state['input']['name'];
+$pass= md5($form_state['input']['pass']);
+db_set_active('atenas');
+$user_ext=db_query('select * from {usuario} where nick= :user',array(':user'=>$username))->fetchObject();
+db_set_active('default');
+if($user_ext) 
+{
+ if(md5($form_state['input']['pass'])!=$user_ext->contrasenna)
+  form_set_error("Contrase&ntilde;a Incorrecta");
+  
+ elseif($user_ext->contrasenna_expirada)
+  form_set_error("Su contrase&ntilde;a ha expirado. Consulte con el administrador de la base de datos.");
+ elseif($user_ext->cuenta_bloqueda)
+   form_set_error("Esta cuenta esta bloqueada. Consulte con el administrador de la base de datos."); 
+ elseif($user_ext->cuenta_expirada)
+  form_set_error("Esta cuenta ha expirado.");
+ elseif(!$user_ext->habilitado)
+  form_set_error("Su cuenta no esta habilitada. Consulte con el administrador de la base de datos.");
+  else
+  {
+   db_set_active('atenas');
+   $result=db_query("select  r.nombre_rol from usuario u inner join usuario_rol a on u.id=a.usuario_id inner join rol r on a.rol_id=r.id  where  nick=:user --",array(':user'=>$username));
+   db_set_active('default');
+    user_external_login_register($username, 'atenas_integration');
+    global $user;
+   foreach($result as $row)
+   { 
+    $rid=db_query('select rid from {role} where name=:name --',array(':name'=>$row->nombre_rol))->fetchField();
+    if(!$rid)
+      $rid=db_insert('role')->fields(array('name'=>$row->nombre_rol))->execute();
+	 
+	  if(!isset($user->roles[$rid]))
+	  {
+	   db_insert('users_roles')->fields(array('uid'=>$user->uid,'rid'=>$rid))->execute();
+	  }
+   }
+   drupal_goto('user/'.$user->uid);
+  }
+ }
+}
+ catch (PDOException $e) {
+  db_set_active('default');
+  drupal_set_message($e->getMessage());
+ }
+}
+
+function atenas_integration_views_api() {
+  return array('api' => 3);
+}

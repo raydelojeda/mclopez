@@ -1,0 +1,17 @@
+<?php
+function view_md_slide_view_api()
+{
+  return array('api' => 3);
+}
+
+function view_md_slider_views_data() {
+  $data['views']['md_slider_area'] = array(
+    'title' => t('MD Slider Area'),
+    'help' => t('Provide  markup with format md_slider  for the area.'),
+    'area' => array(
+      'handler' => 'view_handler_md_slider_area',
+    ),
+  );
+  return $data;
+}
+
